@@ -1,0 +1,116 @@
+/** @file quiz.css
+
+                   _oo0oo_
+                  o8888888o
+                  88" . "88
+                  (| -_- |)
+                  0\  =  /0
+                ___/`---'\___
+              .' \\|     |// '.
+             / \\|||  :  |||// \
+            / _||||| -:- |||||- \
+           |   | \\\  -  /// |   |
+           | \_|  ''\---/''  |_/ |
+           \  .-\__  '-'  ___/-. /
+         ___'. .'  /--.--\  `. .'___
+      ."" '<  `.___\_<|>_/___.' >' "".
+     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+     \  \ `_.   \_ __\ /__ _/   .-` /  /
+ =====`-.____`.___ \_____/___.-`___.-'=====
+                   `=---='
+
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+           佛祖保佑         永無 BUG
+
+ *  @author X!aN
+ *  @date 2025/11/12 */
+
+
+/* 基本 */
+html { scroll-behavior: smooth; }
+body { background:#fff; }
+
+/* 版寬 */
+.narrow { max-width: 920px; }
+
+/* 題目區 */
+.q-item { border-bottom:1px solid #eee; padding:16px 0; }
+.opt { margin:6px 0; }
+.badge-key{
+  font-weight:600; width:2.2rem; display:inline-block; text-align:center;
+}
+.answer-mark{ margin-left:.5rem; }
+
+/* 置頂控制列 */
+.sticky-controls{
+  position: sticky; top: 0; z-index: 1020;
+  background:#fff; border-bottom:1px solid #eee; padding:.75rem 0;
+}
+
+/* 回到頂部按鈕 */
+#backToTop{
+  position: fixed; right:16px; bottom:16px; z-index:1100;
+  display:none; border-radius:999px; padding:12px 16px;
+}
+
+/* 匯出工具列（提交後出現） */
+#exportBar .btn{ min-width:132px; }
+
+/* === 提交後，正確/錯誤的明顯標示 === */
+.q-item .form-check-label{
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+/* 綠底＋左邊綠線＋粗體＋深綠字 */
+.correct-option .form-check-label{
+  background:#e8f7ee;              /* 淺綠底 */
+  border-left:4px solid #198754;   /* 成功綠 */
+  padding:.3rem .5rem .3rem .75rem;
+  font-weight:700;
+  color:#0f5132;                   /* 深綠字 */
+}
+
+/* User選錯會有紅底＋左邊紅線＋深紅字 */
+.wrong-chosen .form-check-label{
+  background:#fdecea;              /* 淺紅底 */
+  border-left:4px solid #dc3545;   /* 危險紅 */
+  padding:.3rem .5rem .3rem .75rem;
+  color:#842029;                   /* 深紅字 */
+}
+
+/* 直接隱藏「正確答案：XXXX」整行（若 JS 仍插入也不會顯示） */
+.correct-line{ display:none !important; }
+
+/* 取消Bootstrap對disabled選項的發灰效果 */
+.form-check-input:disabled ~ .form-check-label{
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+/* 徽章微調（避免偏高/偏低） */
+.answer-mark .badge{ vertical-align: baseline; }
+
+/* ===================== RWD 強化 ===================== */
+
+/* 極小裝置（≤576px） */
+@media (max-width: 576px){
+  .opt{ font-size:1rem; line-height:1.6; }
+  .q-item{ padding:14px 0; }
+  .form-check-input{ width:1.1rem; height:1.1rem; }
+  .form-check-label{ display:inline-block; padding-left:.25rem; }
+  .badge-key{ width:2rem; }
+  .sticky-controls{ padding:.6rem 0; }
+  #backToTop{ padding:14px 18px; font-size:1.1rem; }
+  #exportBar .btn{ width:100%; }
+}
+
+/* 中大尺吋（≥992px）：稍微放寬閱讀寬度 */
+@media (min-width: 992px){
+  .narrow{ max-width: 860px; }
+}
+
+/* 使用者偏好減少動效時，關閉過度動畫 */
+@media (prefers-reduced-motion: reduce){
+  .q-item .form-check-label{ transition:none; }
+}
